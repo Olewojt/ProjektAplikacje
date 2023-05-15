@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/main', [MainController::class, 'index']);
+Route::get('/main', [MainController::class, 'index'])->name('main');
 
 Route::controller(LoginController::class)->group(function (){
     Route::get('/login', 'login')->name('login');

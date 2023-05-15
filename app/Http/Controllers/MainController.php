@@ -11,6 +11,7 @@ class MainController extends Controller
     public function index(): View
     {
         $voivodeships = DB::select('select * from voivodeships');
-        return view('main', ['voivodeships' => $voivodeships]);
+        $companies = DB::select('select * from companies');
+        return view('main', ['voivodeships' => $voivodeships, 'companies' => $companies]);
     }
 }

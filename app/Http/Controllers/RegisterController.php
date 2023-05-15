@@ -10,15 +10,15 @@ class RegisterController extends Controller
 {
     public function create()
     {
-        return view('registration.create');
+        return view('auth.register');
     }
 
     public function store(Request $data)
     {
         $data->validate([
-            'login' => 'required',
+            'login' => 'required|unique:users',
             'password' => 'required',
-            'e_mail' => 'required|email',
+            'e_mail' => 'required|email|unique:users',
             'name' => 'required',
             'surname' => 'required',
             'phone_number' => 'required'
@@ -36,6 +36,6 @@ class RegisterController extends Controller
         $user->save();
         auth()->login($user);
         
-        return redirect()->to('/main');
+        return redirect()->to('main');
     }
 }

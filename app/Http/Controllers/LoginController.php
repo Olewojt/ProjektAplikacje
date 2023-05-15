@@ -25,13 +25,12 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'login' => 'required',
             'password' => 'required',
-            'e_mail' => 'required|email'
         ]);
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect()->intended('dashboard');
+            return redirect()->intended('main');
         }
  
         return back()->withErrors([

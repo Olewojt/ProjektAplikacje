@@ -26,7 +26,7 @@ Route::get('/main', [MainController::class, 'index'])->name('main');
 Route::controller(LoginController::class)->group(function (){
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'authenticate')->name('login.authenticate');
-    Route::get('/login', 'logout')->name('login.logout');
+    Route::get('/logout', 'logout')->name('login.logout');
 });
 
 Route::controller(RegisterController::class)->group(function (){

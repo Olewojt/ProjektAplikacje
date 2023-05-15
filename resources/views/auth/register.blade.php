@@ -1,52 +1,54 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.mainLayout')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+@section('content')
+
+@if ($errors -> any())
+    @foreach ($errors->all() as $error)
+        <div>{{ $error }}</div>
+    @endforeach
+@endif
+
+<div class='container-fluid d-flex justify-content-center'>
+    <form class='text-center' action="{{ route('register.store') }}" method="POST"> 
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class='p-2' for="login">Login</label>
+                <input type="text" class="form-control" name='login' required>
+            </div>
+        
+            <div class="form-group col-md-6">
+                <label class='p-2' for="name">Imię</label>
+                <input type="text" class="form-control" name='name' required>
+            </div>
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class='p-2' for="password">Hasło</label>
+                <input type="password" class="form-control" name='password' required>
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label class='p-2' for="name">Nazwisko</label>
+                <input type="text" class="form-control" name='surname' required>
+            </div>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class='p-2' for="email">E-Mail</label>
+                <input type="email" class="form-control" name='e_mail' required>
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label class='p-2' for="name">Numer telefonu</label>
+                <input type="text" class="form-control" name='phone_number' required>
+            </div>
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn btn-primary m-2">Zarejestruj</button>
     </form>
-</x-guest-layout>
+</div>
+
+@endsection

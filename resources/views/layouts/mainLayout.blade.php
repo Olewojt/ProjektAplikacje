@@ -22,14 +22,14 @@
 
                 @guest
                     <div class="col-md-2 text-center">
-                        <a href={{ url('login') }}><button type="button" class="btn btn-primary fs-5"
+                        <a href={{ route('login') }}><button type="button" class="btn btn-primary fs-5"
                             style="--bs-btn-padding-y: 0.4rem; --bs-btn-padding-x: 2rem;">Zaloguj</button></a>
                     </div>
                 @endguest
 
                 @auth
                     <div class="col-md-2 text-center">
-                        <a href={{ url('login.logout') }}><button type="button" class="btn btn-primary fs-5"
+                        <a href={{ route('login.logout') }}><button type="button" class="btn btn-primary fs-5"
                             style="--bs-btn-padding-y: 0.4rem; --bs-btn-padding-x: 2rem;">Wyloguj</button></a>
                     </div>
                 @endauth

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mockup</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <header
+                class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-3 link-dark fs-5">Strona główna</a></li>
+                    <li><a href="#" class="nav-link px-3 link-dark fs-5">Firmy</a></li>
+                    <li><a href="#" class="nav-link px-3 link-dark fs-5">O nas</a></li>
+                </ul>
+    
+                @guest
+                    <div class="col-md-2 text-center">
+                        <button type="button" class="btn btn-primary fs-5"
+                            style="--bs-btn-padding-y: 0.4rem; --bs-btn-padding-x: 2rem;" href={{ route('login') }}>Zaloguj</button>
+                    </div>
+                @endguest
+
+                @auth
+                    <div class="col-md-2 text-center">
+                        <button type="button" class="btn btn-primary fs-5"
+                            style="--bs-btn-padding-y: 0.4rem; --bs-btn-padding-x: 2rem;" href={{ route('login.logout') }}>Wyloguj</button>
+                    </div>
+                @endauth
+            </header>
+        </div>
+        @yield('content')
+    </body>
+</html>

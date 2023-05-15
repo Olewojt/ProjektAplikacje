@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class RegisterController extends Controller
+{
+    public function create()
+    {
+        return view('registration.create');
+    }
+
+    public function store(Request $data)
+    {
+        $data->validate([
+            'login' => 'required',
+            'password' => 'required',
+            'e_mail' => 'required|email',
+            'name' => 'required',
+            'surname' => 'required',
+            'phone_number' => 'required'
+        ]);
+        
+        $user = new User();
+        $user->login = $data['login'];
+        $user->password = Hash::make($data['password']);
+        $user->e_mail = $data['e_mail'];
+        $user->name = $data['name'];
+        $user->surname = $data['surname'];
+        $user->phone_number = $data['phone_number'];
+        $user->privilege_id=0;
+
+        $user->save();
+        auth()->login($user);
+        
+        return redirect()->to('/main');
+    }
+}

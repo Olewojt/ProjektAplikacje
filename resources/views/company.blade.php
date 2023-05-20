@@ -17,6 +17,7 @@
                 <div class='row'>
                     <p class="col-md bi bi-telephone"> +48 {{ $company->phone_number }}</p>
                     <p class="bi bi-envelope-at"> {{ $company->e_mail }}</p>
+                    <p class="bi bi-compass"> <a href="http://{{ $company->website }}" target='_blank'>{{ $company->website }}</a></p>
                     <hr>
                 </div>
 
@@ -24,6 +25,9 @@
                     <p>ul. {{ $company->address->first()->street }} {{ $company->address->first()->building_number }}</p>
                     <p>{{ $company->address->first()->zip_code }} {{ $company->address->first()->city }}</p>
                     <p>{{ $company->address->first()->voivodeship->name }}</p>
+                    <hr>
+                    <p>NIP: {{ $company->nip }}</p>
+                    <p>REGON: {{ $company->regon }}</p>
                     <hr>
                 </div>
                 
@@ -35,7 +39,18 @@
             <div class='vr opacity-0'></div>
 
             <div id="opinions" class='col-md-4 bg-warning company'>
-                sasadsa
+                <div class='row'>
+                    <div class='text-center fs-1'>Opinie</div>
+                    <hr>
+                </div>
+                @foreach ( $company->reviews as $review)
+                    <div class='row'>
+                        <h3>{{ $review->title }}</h3>
+                        <p>{{ $review->description }}</p>
+                        <p>{{ $review->rating }}</p>
+                        <p>{{ $review->user->name }} {{ $review->user->surname }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

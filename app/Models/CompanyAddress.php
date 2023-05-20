@@ -13,10 +13,12 @@ class CompanyAddress extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'company_id',
+        'voivodeship_id',
         'city',
         'street',
         'building_number',
-        'zip_code'
+        'zip_code',
     ];
 
     public function address() {

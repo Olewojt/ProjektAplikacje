@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nip', 10);
             $table->string('phone_number', 9);
             $table->string('e_mail', 100);
+            $table->string('website', 200);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('industry_id')->constrained('industries');
         });

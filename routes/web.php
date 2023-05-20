@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,14 @@ Route::controller(RegisterController::class)->group(function (){
     Route::post('/register', 'store')->name('register.store');
 });
 
-Route::controller(CompanyController::class)->group(function (){
-    Route::get('/company/{id}', 'show')->name('company.show');
+Route::controller(AccountController::class)->group(function (){
+    Route::get('/dashboard', 'dashboard')->name('account.dashboard');
 });
+
+Route::controller(CompanyController::class)->group(function (){
+    Route::get('/company/{id}', 'show')->name('company.show')->where('id', '[0-9]+'); 
+});
+
+Route::any('{url}', function(){
+    return redirect('/');
+})->where('url', '.*');

@@ -37,6 +37,9 @@ class CompanyController extends Controller
     public function show(int $id)
     {
         $company = Company::find($id);
+        if ($company == null){
+            return view('notFound');
+        }
         return view('company', ['company' => $company]);
     }
 

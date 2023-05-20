@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CompanySeeder::class,
             VoivodeshipSeeder::class,
-            CompanyAddressSeeder::class
+            CompanyAddressSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }

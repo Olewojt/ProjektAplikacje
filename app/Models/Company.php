@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Company extends Model
@@ -26,21 +25,28 @@ class Company extends Model
         'nip',
         'phone_number',
         'e_mail',
+        'website',
+        'user_id',
         'industry_id'
     ];
 
-    public function address(): HasMany
+    public function address()
     {
         return $this->hasMany(CompanyAddress::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
     public function industry()
     {
-        return $this->belongsTo(Industry::class);
+        return $this->hasOne(Industry::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

@@ -12,8 +12,7 @@
 
     <body>
         <div class="container-fluid">
-            <header
-                class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-around py-3 mb-4 border-bottom">
     
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li><a href={{ route('main') }} class="nav-link px-3 link-dark fs-5">Strona główna</a></li>
@@ -29,7 +28,9 @@
                 @endguest
 
                 @auth
-                    <div class="col-md-2 text-center">
+                    <div class="col-md-3 d-flex justify-content-between">
+                        <a href={{ route('account.dashboard') }}><button type="button" class="btn btn-primary fs-5"
+                            style="--bs-btn-padding-y: 0.4rem; --bs-btn-padding-x: 2rem;">Konto</button></a>
                         <a href={{ route('login.logout') }}><button type="button" class="btn btn-primary fs-5"
                             style="--bs-btn-padding-y: 0.4rem; --bs-btn-padding-x: 2rem;">Wyloguj</button></a>
                     </div>

@@ -22,6 +22,7 @@ class CompanySeeder extends Seeder
                 'nip'  => "505882319",
                 'phone_number'  => "24266297",
                 'e_mail'  => "Hertz@hertz.com",
+                'website' => "www.hertz.com",
                 'industry_id'  => "1"
             ],
             [
@@ -32,6 +33,7 @@ class CompanySeeder extends Seeder
                 'nip'  => "688783153",
                 'phone_number'  => "27005994",
                 'e_mail'  => "Walmart@walmart.com",
+                'website' => "www.walmart.com",
                 'industry_id'  => "1"
             ],
             [
@@ -42,6 +44,7 @@ class CompanySeeder extends Seeder
                 'nip'  => "045144448",
                 'phone_number'  => "47603358",
                 'e_mail'  => "Springer@springer.com",
+                'website' => "www.springer.com",
                 'industry_id'  => "1"
             ],
             [
@@ -52,6 +55,7 @@ class CompanySeeder extends Seeder
                 'nip'  => "499321083",
                 'phone_number'  => "80807420",
                 'e_mail'  => "Januszex@januszex.com",
+                'website' => "www.januszex.com",
                 'industry_id'  => "1"
             ],
             [
@@ -62,6 +66,7 @@ class CompanySeeder extends Seeder
                 'nip'  => "865149970",
                 'phone_number'  => "73338857",
                 'e_mail'  => "Termopol@termopol.com",
+                'website' => "www.termopol.com",
                 'industry_id'  => "1"
             ]
         ]);

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'surname',
         'e_mail',
         'phone_number',
+        'privilege_id'
     ];
 
     /**
@@ -47,5 +48,9 @@ class User extends Authenticatable
 
     public function companies(){
         return $this->hasMany(Company::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('compnany_id')->constrained('companies');
+            $table->foreignId('company_id')->constrained('companies');
             $table->string('title', 40);
             $table->string('description', 512);
             $table->tinyInteger('rating');

@@ -4,37 +4,21 @@
 <div id="content" class="container-fluid">
     <div class="row">
         <section id="companies" class="col-md-9">
-            <?php
-            $fname = storage_path('dane.txt');
-            ($file = fopen($fname, 'r')) or die('Some file error!');
-            for ($i = 0; $i < 10; $i++) {
-                $name = fgets($file);
-                $number = fgets($file);
-                $lorem = fgets($file);
-                // printf('<br/>%s<br/>%s<br/>%s<br/>', $name, $number, $lorem);
-                printf(
-                    "
-                            <div class='row company'>
-                            <section class='col' style='padding:1em'>
-                                <h3>%s</h3>
-                                <h6>+48 %s</h6>
-                                <p>%s</p>
-                            </section>
-            
-                            <div class='vr bg-success'></div>
-            
-                            <section class='col-2 d-flex align-items-center justify-content-center'>
-                                <button class='btn btn-info'>Więcej</button>
-                            </section>
-                            </div>
-                            ",
-                    $name,
-                    $number,
-                    $lorem,
-                );
-            }
-            fclose($file);
-            ?>
+            @foreach ($companies as $company)
+                <div class='row company'>
+                <section class='col' style='padding:1em'>
+                    <h3>{{ $company->name }}</h3>
+                    <h6>+48 {{ $company->phone_number }}</h6>
+                    <p>{{ $company->description }}</p>
+                </section>
+
+                <div class='vr bg-success'></div>
+
+                <section class='col-2 d-flex align-items-center justify-content-center'>
+                    <a href={{ route('company.show', $company->id) }}><button class='btn btn-info'>Więcej</button></a>
+                </section>
+                </div>
+            @endforeach
         </section>
 
         <section id="filters" class="col-md-3">

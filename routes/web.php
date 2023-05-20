@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,8 @@ Route::controller(LoginController::class)->group(function (){
 Route::controller(RegisterController::class)->group(function (){
     Route::get('/register', 'create')->name('register');
     Route::post('/register', 'store')->name('register.store');
+});
+
+Route::controller(CompanyController::class)->group(function (){
+    Route::get('/company/{id}', 'show')->name('company.show');
 });

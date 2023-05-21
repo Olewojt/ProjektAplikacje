@@ -42,7 +42,7 @@ class Company extends Model
 
     public function industry()
     {
-        return $this->hasOne(Industry::class);
+        return $this->belongsTo(Industry::class);
     }
 
     public function reviews()

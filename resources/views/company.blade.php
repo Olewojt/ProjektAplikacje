@@ -38,17 +38,17 @@
 
             <div class='vr opacity-0'></div>
 
-            <div id="opinions" class='col-md-4 bg-warning company'>
+            <div id="opinions" class='col-md-4 company'>
                 <div class='row'>
                     <div class='text-center fs-1'>Opinie</div>
                     <hr>
                 </div>
                 @foreach ( $company->reviews as $review)
-                    <div class='row'>
-                        <h3>{{ $review->title }}</h3>
-                        <p>{{ $review->description }}</p>
-                        <p>{{ $review->rating }}</p>
-                        <p>{{ $review->user->name }} {{ $review->user->surname }}</p>
+                    <div class='row company mx-2 pt-2' style='box-shadow: 0.1em 0.1em 0.1em 0.1em gray;'>
+                        <h4>{{ $review->title }}</h4>
+                        <hr>
+                        <p style='font-size: 0.8em'>{{ $review->description }}</p>
+                        <p class='d-flex text-start justify-content-between'>{{ $review->user->name }} {{ $review->user->surname }}<i class="bi bi-star-fill"> {{ $review->rating }}/5</i></p>
                     </div>
                 @endforeach
             </div>

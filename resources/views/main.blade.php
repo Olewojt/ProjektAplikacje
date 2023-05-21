@@ -4,12 +4,21 @@
 <div id="content" class="container-fluid">
     <div class="row">
         <section id="companies" class="col-md-9">
-            @foreach ($companies as $company)
+            @foreach ($company as $company)
                 <div class='row company'>
                 <section class='col' style='padding:1em'>
-                    <h3>{{ $company->name }}</h3>
-                    <h6>+48 {{ $company->phone_number }}</h6>
-                    <p>{{ $company->description }}</p>
+                    <div class='row d-flex justify-content-between'>
+                        <h3 class='col'>{{ $company->name }}</h3>
+                        <h5 class='col text-end'>{{ $company->industry->name }}</h5>
+                    </div>
+
+                    <div class='row'>
+                        <h6>+48 {{ $company->phone_number }}</h6>
+                    </div>
+
+                    <div class='row'>
+                        <p>{{ $company->description }}</p>
+                    </div>
                 </section>
 
                 <div class='vr bg-success'></div>
@@ -33,7 +42,7 @@
                     <label class="formLabels">Województwo</label>
                     <select class="form-select">
                         <option selected></option>
-                        @foreach ($voivodeships as $elem)
+                        @foreach ($voivodeship as $elem)
                             <option value="{{ $elem->id }}">{{ $elem->name }}</option>
                         @endforeach
                     </select>
@@ -41,9 +50,8 @@
                     <label class="formLabels">Branża</label>
                     <select class="form-select">
                         <option selected></option>
-                        <option value="1">Górnicza</option>
-                        <option value="2">Spożywcza</option>
-                        <option value="3">IT</option>
+                        @foreach ($industry as $elem)
+                        @endforeach
                     </select>
 
                     <label class="formLabels">Opinie</label>

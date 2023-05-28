@@ -9,7 +9,6 @@
                 <section class='col' style='padding:1em'>
                     <div class='row d-flex justify-content-between'>
                         <h3 class='col'>{{ $company->name }}</h3>
-                        <h5 class='col text-end'>{{ $company->industry->name }}</h5>
                     </div>
 
                     <div class='row'>
@@ -18,6 +17,8 @@
 
                     <div class='row'>
                         <p>{{ $company->description }}</p>
+                        <hr>
+                        <p class='col text-start mb-0'>Branża: <b>{{ $company->industry->name }}</b></p>
                     </div>
                 </section>
 
@@ -51,12 +52,14 @@
                     <select class="form-select">
                         <option selected></option>
                         @foreach ($industry as $elem)
+                            <option value={{ $elem->id }}>{{ $elem->name }}</option>
                         @endforeach
                     </select>
 
                     <label class="formLabels">Opinie</label>
                     <select class="form-select">
-                        <option selected value="1">Najlepsze</option>
+                        <option selected value="0"></option>
+                        <option value="1">Najgorsze</option>
                         <option value="2">Najgorsze</option>
                     </select>
 

@@ -16,12 +16,12 @@ class RegisterController extends Controller
     public function store(Request $data)
     {
         $data->validate([
-            'login' => 'required|unique:users',
-            'password' => 'required',
+            'login' => 'required|string|unique:users',
+            'password' => 'required|string|min:8',
             'e_mail' => 'required|email|unique:users',
             'name' => 'required',
             'surname' => 'required',
-            'phone_number' => 'required'
+            'phone_number' => 'required|max:9|regex:/^\d+$/'
         ]);
         
         $user = new User();

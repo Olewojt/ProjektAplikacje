@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Pending;
 
 class AccountController extends Controller
 {
@@ -15,5 +15,19 @@ class AccountController extends Controller
             return view('dashboard', ['user' => $user]);
         }
         return redirect('/');
+    }
+
+    public function pending(){
+        if(Auth::check()) {
+            $user = Auth::user();
+            if (is_null($user->pending)){
+                Pending::insert([
+                    'user_id' => $user->id,
+                    'accepted' => 0
+                ]); 
+            }
+            return redirect()->route('account.dashboard');
+        }
+        return redirect()->route('login');
     }
 }

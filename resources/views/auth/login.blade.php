@@ -2,12 +2,6 @@
 
 @section('content')
 
-@if ($errors -> any())
-    @foreach ($errors->all() as $error)
-        <div>{{ $error }}</div>
-    @endforeach
-@endif
-
 <div class='container-fluid d-flex justify-content-center'>
     <form class='text-center' action="{{ route('login.authenticate') }}" method="POST"> 
         <div class="form-group">
@@ -23,6 +17,11 @@
         <button type="submit" class="btn btn-primary m-2">Zaloguj</button>
         <hr>
         <p>Nie masz konta? <a href="{{ route('register') }}">Zarejestruj się!</a>
+        @if ($errors -> any())
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>
+            @endforeach
+        @endif
     </form>
 </div>
 

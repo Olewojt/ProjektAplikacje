@@ -34,6 +34,7 @@ Route::controller(RegisterController::class)->group(function (){
 
 Route::controller(AccountController::class)->group(function (){
     Route::get('/dashboard', 'dashboard')->name('account.dashboard');
+    Route::post('/dashboard/update', 'update')->name('account.update');
     Route::post('/dashboard/pending', 'pending')->name('account.pending');
     Route::get('/dashboard/pending', 'pending')->name('account.pending');
 });
@@ -44,6 +45,7 @@ Route::controller(CompanyController::class)->group(function (){
     Route::post('/company/store', 'store')->name('company.store');
     Route::get('/company/{id}/edit', 'edit')->name('company.edit');
     Route::post('/company/{id}/edit', 'update')->name('company.update');
+    Route::get('/company/{id}/delete', 'destroy')->name('company.delete');
 });
 
 Route::any('{url}', function(){

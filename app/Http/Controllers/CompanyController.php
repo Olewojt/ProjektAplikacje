@@ -234,8 +234,19 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(int $id)
     {
-        //
+        $company = Company::find($id);
+        if($company==null){
+            return view('notFound');
+        }
+        if (Auth::check()){
+            if($company->user_id==Auth::user()->id){
+                $company->destroy($id);
+                return redirect()->to('/dashboard');
+            }
+            return redirect('main');
+        }
+        return redirect('main');
     }
 }

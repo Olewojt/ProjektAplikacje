@@ -2,12 +2,6 @@
 
 @section('content')
 <script>
-    function confirmation(){
-        let decision = confirm('Czy napewno chcesz wysłać prośbę o zostanie przedsiębiorcą?');
-        if (decision==true){
-            window.location.href = "{{ route('account.pending') }}";
-        }
-    }
 </script>
 <div class="d-flex flex-column align-items-center">
     <div class='company col-md-8 col-12 my-2 py-2'>
@@ -19,10 +13,7 @@
                 @if ($user->privilege_id==0)
                     <h5>Zwykły użytkownik</h5>
                     @if ( !isset($user->pending) )
-                        <form method='POST' onsubmit="confirmation()" action="{{ route('account.pending') }}">
-                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                            <button type='submit' class='btn btn-info pb-0'><h6>Zostań przedsiębiorcą</h6></button>
-                        </form>
+                        <a href="{{ route('account.pending') }}"><button onclick="return confirm('Czy napewno chcesz wysłać prośbę o zostanie przedsiębiorcą?')" class='btn btn-info pb-0'><h6>Zostań przedsiębiorcą</h6></button></a>
                     @else
                         <h6>Twoja prośba o zostanie przedsiębiorcą czeka na potwierdzenie</h6>
                     @endif
@@ -33,26 +24,22 @@
             </div>
         </div>
 
-        <form method="POST">
+        <form method="POST" action={{ route('account.update') }}>
             <div class='row'>
                 <div class='col-md-6 px-4'>
                     <label for='name' class='formLabels'>Imię</label><br/>
-                    <input type='text' name='name' placeholder={{ $user->name }} class="form-control">
+                    <input type='text' name='name' value={{ $user->name }} class="form-control">
                 </div>
                 <div class='col-md-6 px-4'>
                     <label for='surname' class='formLabels'>Nazwisko</label><br/>
-                    <input type='text' name='name' placeholder={{ $user->surname }} class="form-control">
+                    <input type='text' name='surname' value={{ $user->surname }} class="form-control">
                 </div>
             </div>
 
             <div class='row'>
                 <div class='col-md-6 px-4'>
-                    <label for='e_mail' class='formLabels'>E-mail</label><br/>
-                    <input type='email' name='e_mail' placeholder={{ $user->e_mail }} class="form-control" disabled>
-                </div>
-                <div class='col-md-6 px-4'>
                     <label for='phone_number' class='formLabels'>Numer telefonu</label><br/>
-                    <input type='text' name='phone_number' placeholder={{ $user->phone_number }} class="form-control" maxlength='9'>
+                    <input type='text' name='phone_number' value={{ $user->phone_number }} class="form-control" maxlength='9'>
                 </div>
             </div>
 
@@ -61,8 +48,14 @@
                 <button type="reset" class="btn btn-warning col-md-4">Wyczyść</button>
                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             </div>
-        </div>
-    </form>
+        </form>
+        @if ( $errors->any() )
+            <hr>
+            @foreach($errors->all() as $err)
+                <p>{{ $err }}</p>
+            @endforeach
+        @endif
+    </div>
 
     <div class='company col-md-8 col-12 my-2 py-2'>
         <div class='row'>
@@ -104,7 +97,11 @@
                     <div class='row company mx-3 pt-1' style='box-shadow: 0.1em 0.1em 0.1em 0.1em gray;'>
                         <div class='col d-flex justify-content-between p-2'>
                             <h3>{{ $company->name }}</h3>
-                            <a href={{ route('company.show', $company->id) }}><button class='btn btn-success'>Pokaż</button></a>
+                            <div>
+                                <a href={{ route('company.update', $company->id) }}><button class='btn btn-info'>Aktualizuj</button></a>
+                                <a href={{ route('company.delete', $company->id) }}><button onclick="return confirm('Czy napewno chcesz usunąć?')" class='btn btn-danger'>Usuń</button></a>
+                                <a href={{ route('company.show', $company->id) }}><button class='btn btn-success'>Pokaż</button></a>
+                            </div>
                         </div>
                     </div>
                 @endforeach

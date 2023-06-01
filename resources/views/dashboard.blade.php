@@ -108,10 +108,16 @@
                         </div>
                     </div>
                 @endforeach
+                <div class='col d-flex justify-content-center pb-2'>
+                    <a href={{ route('company.create') }}><button class='btn btn-success'>Dodaj</button><a>
+                </div>
             @else 
                 <div class='row mx-3'>
                     <div class='col d-flex justify-content-center pb-2'>
                         </h5>Nie masz jeszcze żadnych przedsiębiorstw</h5>
+                    </div>
+                    <div class='col d-flex justify-content-center pb-2'>
+                        <a href={{ route('company.create') }}><button class='btn btn-primary'>Dodaj</button><a>
                     </div>
                 </div>
             @endif

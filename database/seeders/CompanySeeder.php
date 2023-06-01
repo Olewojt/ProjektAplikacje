@@ -13,62 +13,120 @@ class CompanySeeder extends Seeder
      */
     public function run(): void
     {
-        Company::insert([
+        $companies = [
             [
                 'user_id' => '1',
-                'name'  => "Hertz",
-                'description'  => "Nunc nec lorem aliquet, pretium est vitae, interdum justo. Sed eget ultricies nisi, non cursus mauris. Aenean gravida tortor a leo congue, quis euismod ex viverra. Phasellus pharetra luctus scelerisque.",
+                'name'  => "Innowacyjne Rozwiązania",
+                'description'  => "Innowacyjne Rozwiązania to czołowy dostawca nowatorskich rozwiązań dla różnych branż. Nasza firma specjalizuje się w opracowywaniu i wdrażaniu zaawansowanych technologii, które zrewolucjonizują sposób prowadzenia biznesu. Nasi eksperci są dedykowani dostarczaniu wyjątkowych rezultatów i przekraczaniu oczekiwań klientów.",
                 'regon'  => "0077622308075",
                 'nip'  => "505882319",
                 'phone_number'  => "24266297",
-                'e_mail'  => "Hertz@hertz.com",
-                'website' => "www.hertz.com",
+                'e_mail'  => "info@innowacyjnerez.pl",
+                'website' => "www.innowacyjnerez.pl",
                 'industry_id'  => "2"
             ],
             [
+                'user_id' => '2',
+                'name'  => "Eksperci IT",
+                'description'  => "Eksperci IT to renomowany zespół specjalistów z dziedziny informatyki i technologii. Nasza firma oferuje kompleksowe usługi IT, w tym tworzenie oprogramowania, zarządzanie infrastrukturą sieciową oraz wsparcie techniczne. Jesteśmy dumni z naszych innowacyjnych rozwiązań, które pomagają naszym klientom osiągać sukces w dynamicznym świecie technologii.",
+                'regon'  => "1234567890123",
+                'nip'  => "987654321",
+                'phone_number'  => "12345678",
+                'e_mail'  => "kontakt@eksperciit.pl",
+                'website' => "www.eksperciit.pl",
+                'industry_id'  => "7"
+            ],
+            [
                 'user_id' => '3',
-                'name'  => "Walmart",
-                'description'  => "Maecenas ac ante sit amet arcu dictum vulputate. Integer blandit euismod diam. Sed fringilla erat ac risus accumsan pharetra. Proin vitae rhoncus nulla. Vivamus hendrerit finibus ex, commodo tincidunt neque.",
-                'regon'  => "5676429756728",
-                'nip'  => "688783153",
-                'phone_number'  => "27005994",
-                'e_mail'  => "Walmart@walmart.com",
-                'website' => "www.walmart.com",
-                'industry_id'  => "10"
+                'name'  => "Elegancka Moda",
+                'description'  => "Elegancka Moda to ekskluzywny sklep z odzieżą i dodatkami dla wymagających klientów. Oferujemy szeroki wybór markowych produktów, które podkreślą Twój indywidualny styl. Nasza pasja do mody pozwala nam dostarczać produkty najwyższej jakości, które spełniają oczekiwania nawet najbardziej wymagających klientów.",
+                'regon'  => "9876543210987",
+                'nip'  => "123456789",
+                'phone_number'  => "87654321",
+                'e_mail'  => "kontakt@eleganckamoda.pl",
+                'website' => "www.eleganckamoda.pl",
+                'industry_id'  => "12"
+            ],
+            [
+                'user_id' => '4',
+                'name'  => "Twórcze Studio",
+                'description'  => "Twórcze Studio to zespół pasjonatów sztuki i designu. Jesteśmy specjalistami w tworzeniu unikalnych projektów graficznych, identyfikacji wizualnej i interaktywnych stron internetowych. Nasza kreatywność i profesjonalizm pozwalają nam dostarczać klientom rozwiązania, które wyróżniają się na rynku i przyciągają uwagę.",
+                'regon'  => "7654321098765",
+                'nip'  => "987654321",
+                'phone_number'  => "56789012",
+                'e_mail'  => "info@tworczestudio.pl",
+                'website' => "www.tworczestudio.pl",
+                'industry_id'  => "9"
             ],
             [
                 'user_id' => '1',
-                'name'  => "Springer",
-                'description'  => "Maecenas placerat massa ornare ligula fringilla volutpat. Proin eu sapien mi. Suspendisse eu ante ex. Suspendisse id nulla at leo finibus ultricies in eget turpis. Nulla consectetur tincidunt justo ac.",
-                'regon'  => "0998749179866",
-                'nip'  => "045144448",
-                'phone_number'  => "47603358",
-                'e_mail'  => "Springer@springer.com",
-                'website' => "www.springer.com",
-                'industry_id'  => "6"
-            ],
-            [
-                'user_id' => '1',
-                'name'  => "Januszex",
-                'description'  => "Curabitur porttitor ornare tempus. Aliquam accumsan blandit purus at vulputate. Nunc tristique tempor felis, eget porttitor dui egestas sit amet. Sed interdum pretium mi, nec luctus urna bibendum a. Sed.",
-                'regon'  => "7391718906859",
-                'nip'  => "499321083",
-                'phone_number'  => "80807420",
-                'e_mail'  => "Januszex@januszex.com",
-                'website' => "www.januszex.com",
+                'name'  => "Przedsiębiorczy Doradcy",
+                'description'  => "Przedsiębiorczy Doradcy to zespół doświadczonych specjalistów, którzy pomagają przedsiębiorcom w osiąganiu sukcesu. Nasze usługi obejmują doradztwo biznesowe, planowanie strategii rozwoju i optymalizację procesów. Dzięki naszemu wsparciu możesz skutecznie zarządzać swoim biznesem i realizować ambitne cele.",
+                'regon'  => "5432109876543",
+                'nip'  => "123456789",
+                'phone_number'  => "34567890",
+                'e_mail'  => "kontakt@doradcy.biz",
+                'website' => "www.doradcy.biz",
                 'industry_id'  => "5"
             ],
             [
+                'user_id' => '2',
+                'name'  => "Smakowite Przysmaki",
+                'description'  => "Smakowite Przysmaki to sklep z wysokiej jakości produktami spożywczymi. Oferujemy szeroki wybór świeżych owoców, warzyw, mięsa, wędlin, nabiału i innych smakowitych przysmaków. Nasze produkty są starannie wyselekcjonowane, aby zapewnić naszym klientom najlepszą jakość i autentyczny smak.",
+                'regon'  => "9012345678901",
+                'nip'  => "987654321",
+                'phone_number'  => "23456789",
+                'e_mail'  => "info@smakowiteprzysmaki.pl",
+                'website' => "www.smakowiteprzysmaki.pl",
+                'industry_id'  => "18"
+            ],
+            [
+                'user_id' => '3',
+                'name'  => "Energetyczne Rozwiązania",
+                'description'  => "Energetyczne Rozwiązania to lider w dziedzinie energii odnawialnej. Specjalizujemy się w projektowaniu i instalacji systemów solarnych, wiatrowych i geotermalnych. Nasze rozwiązania pozwalają naszym klientom zmniejszyć koszty energii, zwiększyć efektywność i przyczynić się do ochrony środowiska.",
+                'regon'  => "1098765432109",
+                'nip'  => "123456789",
+                'phone_number'  => "45678901",
+                'e_mail'  => "kontakt@energetycznerez.pl",
+                'website' => "www.energetycznerez.pl",
+                'industry_id'  => "11"
+            ],
+            [
+                'user_id' => '4',
+                'name'  => "Luksusowe Podróże",
+                'description'  => "Luksusowe Podróże to agencja turystyczna specjalizująca się w organizacji wyjątkowych podróży dla najbardziej wymagających klientów. Oferujemy luksusowe wycieczki, ekskluzywne hotele, indywidualne programy zwiedzania i niezapomniane doświadczenia. Daj się ponieść luksusowi i odkryj świat z nami.",
+                'regon'  => "7654321098765",
+                'nip'  => "987654321",
+                'phone_number'  => "56789012",
+                'e_mail'  => "info@luksusowepodroze.pl",
+                'website' => "www.luksusowepodroze.pl",
+                'industry_id'  => "20"
+            ],
+            [
                 'user_id' => '1',
-                'name'  => "Termopol",
-                'description'  => "Donec egestas, nibh id aliquet pellentesque, tortor nisl venenatis nulla, nec eleifend eros leo sit amet metus. Nunc eu dictum ante. Sed ut pretium ante. In eu faucibus mauris, malesuada.",
-                'regon'  => "2699194998223",
-                'nip'  => "865149970",
-                'phone_number'  => "73338857",
-                'e_mail'  => "Termopol@termopol.com",
-                'website' => "www.termopol.com",
-                'industry_id'  => "3"
+                'name'  => "Kreatywne Malarstwo",
+                'description'  => "Kreatywne Malarstwo to studio artystyczne, które tworzy unikalne dzieła sztuki. Nasze prace są wyrazem pasji, kreatywności i indywidualnego podejścia do sztuki. Oferujemy obrazy olejne, akwarele, rysunki i inne dzieła sztuki, które ożywią Twoje wnętrza i nadadzą im wyjątkowego charakteru.",
+                'regon'  => "5432109876543",
+                'nip'  => "123456789",
+                'phone_number'  => "34567890",
+                'e_mail'  => "kontakt@kreatywnemalarstwo.pl",
+                'website' => "www.kreatywnemalarstwo.pl",
+                'industry_id'  => "15"
+            ],
+            [
+                'user_id' => '2',
+                'name'  => "Zdrowy Styl Życia",
+                'description'  => "Zdrowy Styl Życia to sklep z naturalnymi produktami dla zdrowia i dobrej kondycji. Oferujemy szeroki wybór suplementów diety, organicznych produktów spożywczych, kosmetyków naturalnych i innych produktów wspierających zdrowy tryb życia. Dbamy o Twoje dobre samopoczucie i naturalne piękno.",
+                'regon'  => "9012345678901",
+                'nip'  => "987654321",
+                'phone_number'  => "23456789",
+                'e_mail'  => "info@zdrowystylzycia.pl",
+                'website' => "www.zdrowystylzycia.pl",
+                'industry_id'  => "25"
             ]
-        ]);
+        ];
+        
+
+        Company::insert($companies);
     }
 }

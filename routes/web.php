@@ -35,10 +35,13 @@ Route::controller(RegisterController::class)->group(function (){
 Route::controller(AccountController::class)->group(function (){
     Route::get('/dashboard', 'dashboard')->name('account.dashboard');
     Route::post('/dashboard/pending', 'pending')->name('account.pending');
+    Route::get('/dashboard/pending', 'pending')->name('account.pending');
 });
 
 Route::controller(CompanyController::class)->group(function (){
-    Route::get('/company/{id}', 'show')->name('company.show')->where('id', '[0-9]+'); 
+    Route::get('/company/{id}', 'show')->name('company.show')->where('id', '[0-9]+');
+    Route::get('/company/create', 'create')->name('company.create');
+    Route::post('/company/store', 'store')->name('company.store');
 });
 
 Route::any('{url}', function(){

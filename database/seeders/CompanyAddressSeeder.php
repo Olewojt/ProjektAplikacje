@@ -53,6 +53,46 @@ class CompanyAddressSeeder extends Seeder
                 'street' => 'Wyzwolenia',
                 'building_number' => '99',
                 'zip_code' => '22-390',
+            ],
+            [
+                'company_id' => '6',
+                'voivodeship_id' => '13',
+                'city' => 'Kraśnik',
+                'street' => 'Karasia',
+                'building_number' => '12',
+                'zip_code' => '22-390',
+            ],
+            [
+                'company_id' => '7',
+                'voivodeship_id' => '11',
+                'city' => 'Bydgoszcz',
+                'street' => 'Lipska',
+                'building_number' => '104',
+                'zip_code' => '22-532',
+            ],
+            [
+                'company_id' => '8',
+                'voivodeship_id' => '15',
+                'city' => 'Poznań',
+                'street' => 'Modrzewia',
+                'building_number' => '11',
+                'zip_code' => '25-134',
+            ],
+            [
+                'company_id' => '9',
+                'voivodeship_id' => '10',
+                'city' => 'Zwierzyniec',
+                'street' => 'Wyzwolenia',
+                'building_number' => '53',
+                'zip_code' => '22-390',
+            ],
+            [
+                'company_id' => '10',
+                'voivodeship_id' => '10',
+                'city' => 'Wrocław',
+                'street' => 'Powstańców',
+                'building_number' => '105/5',
+                'zip_code' => '22-246',
             ]
         ]);
     }

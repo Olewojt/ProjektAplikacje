@@ -42,6 +42,8 @@ Route::controller(CompanyController::class)->group(function (){
     Route::get('/company/{id}', 'show')->name('company.show')->where('id', '[0-9]+');
     Route::get('/company/create', 'create')->name('company.create');
     Route::post('/company/store', 'store')->name('company.store');
+    Route::get('/company/{id}/edit', 'edit')->name('company.edit');
+    Route::post('/company/{id}/edit', 'update')->name('company.update');
 });
 
 Route::any('{url}', function(){

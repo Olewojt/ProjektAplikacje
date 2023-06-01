@@ -32,7 +32,7 @@ class Company extends Model
 
     public function address()
     {
-        return $this->hasMany(CompanyAddress::class);
+        return $this->hasOne(CompanyAddress::class);
     }
 
     public function user()

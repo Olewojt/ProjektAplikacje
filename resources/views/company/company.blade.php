@@ -22,9 +22,9 @@
                 </div>
 
                 <div class='row'>
-                    <p>ul. {{ $company->address->first()->street }} {{ $company->address->first()->building_number }}</p>
-                    <p>{{ $company->address->first()->zip_code }} {{ $company->address->first()->city }}</p>
-                    <p>{{ $company->address->first()->voivodeship->name }}</p>
+                    <p>ul. {{ $company->address->street }} {{ $company->address->building_number }}</p>
+                    <p>{{ $company->address->zip_code }} {{ $company->address->city }}</p>
+                    <p>{{ $company->address->voivodeship->name }}</p>
                     <hr>
                     <p>NIP: {{ $company->nip }}</p>
                     <p>REGON: {{ $company->regon }}</p>

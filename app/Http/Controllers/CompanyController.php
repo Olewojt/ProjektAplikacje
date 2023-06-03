@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\CompanyAddress;
 use App\Models\Industry;
+use App\Models\Review;
 use App\Models\Voivodeship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -248,5 +249,54 @@ class CompanyController extends Controller
             return redirect('main');
         }
         return redirect('main');
+    }
+
+    public function review_form(int $id){
+        $company = Company::find($id);
+        if($company==null){
+            return view('notFound');
+        }
+
+        return view('company/company_add_review', ['company'=>$company]);
+    }
+
+    public function review_add(int $id, Request $data){
+        $company = Company::find($id);
+        if($company==null){
+            return view('notFound');
+        }
+
+        $rules = [
+            'title' => 'required|string|max:40',
+            'description' => 'required|string|max:512',
+            'rating' => 'required|numeric|min:1|max:5',
+        ];
+
+        $messages = [
+            'title.required' => "Pole tytuł jest wymagane",
+            'description.required' => "Pole opis jest wymagane",
+            'rating.required' => "Pole ocena jest wymagane",
+            'title.max' => "Pole tytuł jest za długie",
+            'description.max' => "Pole opis jest za długie (512 znaków)",
+            'rating.min' => "Pole ocena musi zawierać się w przedziale od 1 do 5",
+            'rating.max' => "Pole ocena musi zawierać się w przedziale od 1 do 5",
+            'rating.numeric' => "Pole ocena musi być liczbą",
+        ];
+
+        $validator = Validator::make($data->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $review = new Review();
+        $review->user_id = Auth::user()->id;
+        $review->company_id = $id;
+        $review->title = $data['title'];
+        $review->description = $data['description'];
+        $review->rating = $data['rating'];
+        $review->save();
+        
+        return redirect()->route('company.show', ['id'=>$company->id]);
     }
 }

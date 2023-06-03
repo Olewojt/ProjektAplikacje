@@ -43,14 +43,29 @@
                     <div class='text-center fs-1'>Opinie</div>
                     <hr>
                 </div>
-                @foreach ( $company->reviews as $review)
+
+                @if (count($company->reviews) == 0)
                     <div class='row company mx-2 pt-2' style='box-shadow: 0.1em 0.1em 0.1em 0.1em gray;'>
-                        <h4>{{ $review->title }}</h4>
-                        <hr>
-                        <p style='font-size: 0.8em'>{{ $review->description }}</p>
-                        <p class='d-flex text-start justify-content-between'>{{ $review->user->name }} {{ $review->user->surname }}<i class="bi bi-star-fill"> {{ $review->rating }}/5</i></p>
+                        <h4 class='text-center'>Brak opinii!</h4>
                     </div>
-                @endforeach
+                @else
+                    @foreach ( $company->reviews as $review)
+                        <div class='row company mx-2 pt-2' style='box-shadow: 0.1em 0.1em 0.1em 0.1em gray;'>
+                            <h4>{{ $review->title }}</h4>
+                            <hr>
+                            <p style='font-size: 0.8em'>{{ $review->description }}</p>
+                            <p class='d-flex text-start justify-content-between'>{{ $review->user->name }} {{ $review->user->surname }}<i class="bi bi-star-fill"> {{ $review->rating }}/5</i></p>
+                        </div>
+                    @endforeach
+                @endif
+
+                @auth
+                    @if ( count($company->reviews->where('user_id', Auth::user()->id))==0 )
+                        <div class='row mx-2 pt-2'>
+                            <a href={{ route('company.addReview', ['id'=>$company->id]) }} class='btn btn-info'>Dodaj</a>
+                        </div>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>

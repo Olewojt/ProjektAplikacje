@@ -46,6 +46,8 @@ Route::controller(CompanyController::class)->group(function (){
     Route::get('/company/{id}/edit', 'edit')->name('company.edit');
     Route::post('/company/{id}/edit', 'update')->name('company.update');
     Route::get('/company/{id}/delete', 'destroy')->name('company.delete');
+    Route::get('/company/{id}/addReview', 'review_form')->name('company.reviewForm');
+    Route::post('/company/{id}/addReview', 'review_add')->name('company.addReview');
 });
 
 Route::any('{url}', function(){

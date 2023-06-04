@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
                 'login' => 'ewa',
                 'password' => Hash::make('12345678'),
                 'name' => 'Ewa',
-                'surname' => 'Olejko',
+                'surname' => 'Plaza',
                 'e_mail' => 'kirbi@onet.pl',
                 'phone_number' => '912332144',
                 'privilege_id' => '0',
@@ -50,6 +50,15 @@ class UserSeeder extends Seeder
                 'e_mail' => 'pozdro@onet.pl',
                 'phone_number' => '912332144',
                 'privilege_id' => '0',
+            ],
+            [
+                'login' => 'wojti',
+                'password' => Hash::make('12345678'),
+                'name' => 'Wojtek',
+                'surname' => 'Ugalungus',
+                'e_mail' => 'olewojtek@onet.pl',
+                'phone_number' => '354354355',
+                'privilege_id' => '2',
             ],
         ]);
     }

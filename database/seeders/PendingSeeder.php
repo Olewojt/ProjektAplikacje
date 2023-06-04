@@ -13,11 +13,15 @@ class PendingSeeder extends Seeder
      */
     public function run(): void
     {
-        Pending::insert(
+        Pending::insert([
             [
                 'user_id' => 3,
                 'accepted' => 0
-            ]
-        );
+            ],
+            [
+                'user_id' => 4,
+                'accepted' => 0
+            ],
+        ]);
     }
 }

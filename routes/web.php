@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +36,12 @@ Route::controller(RegisterController::class)->group(function (){
 Route::controller(AccountController::class)->group(function (){
     Route::get('/dashboard', 'dashboard')->name('account.dashboard');
     Route::post('/dashboard/update', 'update')->name('account.update');
-    Route::post('/dashboard/pending', 'pending')->name('account.pending');
     Route::get('/dashboard/pending', 'pending')->name('account.pending');
 });
 
 Route::controller(CompanyController::class)->group(function (){
+    Route::get('/company', 'index')->name('company.index'); 
+    Route::get('/company/search', 'search')->name('company.search'); 
     Route::get('/company/{id}', 'show')->name('company.show')->where('id', '[0-9]+');
     Route::get('/company/create', 'create')->name('company.create');
     Route::post('/company/store', 'store')->name('company.store');
@@ -49,6 +51,9 @@ Route::controller(CompanyController::class)->group(function (){
     Route::get('/company/{id}/addReview', 'review_form')->name('company.reviewForm');
     Route::post('/company/{id}/addReview', 'review_add')->name('company.addReview');
 });
+
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+Route::get('/user/{id}/accept', [UserController::class, 'accept'])->name('user.accept');
 
 Route::any('{url}', function(){
     return redirect('/');

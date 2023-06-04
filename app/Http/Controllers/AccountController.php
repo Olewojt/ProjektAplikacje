@@ -14,8 +14,12 @@ class AccountController extends Controller
     public function dashboard(){
         if (Auth::check()){
             $user = Auth::user();
+            if ($user->privilege_id==2){
+                $pending = Pending::all();
+                return view('dashboard', ['user' => $user, 'pending' => $pending]);
+            } 
 
-            return view('dashboard', ['user' => $user]);
+            return view('dashboard', ['user' => $user, 'pending' => []]);
         }
         return redirect('/');
     }

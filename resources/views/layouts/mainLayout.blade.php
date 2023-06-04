@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Mockup</title>
+        <title>Spis firm</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -16,7 +16,7 @@
     
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li><a href={{ route('main') }} class="nav-link px-3 link-dark fs-5">Strona główna</a></li>
-                    <li><a href={{ route('main') }} class="nav-link px-3 link-dark fs-5">Firmy</a></li>
+                    <li><a href={{ route('company.index') }} class="nav-link px-3 link-dark fs-5">Firmy</a></li>
                     <li><a href="#" class="nav-link px-3 link-dark fs-5">Kontakt</a></li>
                 </ul>
 

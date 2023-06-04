@@ -16,5 +16,7 @@ class Pending extends Model
         'accepted'
     ];
 
-
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

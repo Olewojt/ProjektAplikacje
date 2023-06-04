@@ -19,7 +19,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $voivodeship = Voivodeship::all();
+        $company = Company::all();
+        $industry = Industry::all();
+        return view('main', ['voivodeship' => $voivodeship, 'company' => $company, 'industry' => $industry]);
     }
 
     /**
@@ -28,7 +31,6 @@ class CompanyController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            $user = Auth::user();
             $voivodeships = Voivodeship::all();
             $industries = Industry::all();
             return view('company/create_company', ['voivodeship'=>$voivodeships, 'industry'=>$industries]);
@@ -298,5 +300,30 @@ class CompanyController extends Controller
         $review->save();
         
         return redirect()->route('company.show', ['id'=>$company->id]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = Company::query();
+
+        if ($request->has('name') & strlen($_GET['name'])!=0) {
+            $query->where('name', 'LIKE', '%'.$request->input('name').'%');
+        }
+
+        if ($request->has('voivodeship') & $_GET['voivodeship']!='0') {
+            $query
+            ->join('company_address', 'companies.id', '=', 'company_address.company_id')
+            ->where('company_address.voivodeship_id', $request->input('voivodeship'));
+        }
+
+        if ($request->has('industry') & $_GET['industry']!='0') {
+            $query->where('companies.industry_id', $request->input('industry'));
+        }
+
+        $company = $query->get();
+        $voivodeship = Voivodeship::all();
+        $industry = Industry::all();
+
+        return view('main', ['voivodeship' => $voivodeship, 'company' => $company, 'industry' => $industry]);
     }
 }

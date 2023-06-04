@@ -19,6 +19,8 @@
                     @endif
                 @elseif ($user->privilege_id==1)
                     <h5>Przedsiębiorca</h5>
+                @elseif ($user->privilege_id==2)
+                    <h5>Administrator</h5>
                 @endif
                 <hr>
             </div>
@@ -56,6 +58,35 @@
             @endforeach
         @endif
     </div>
+
+
+    @if ($user->privilege_id==2)
+        <div class='company col-md-8 col-12 my-2 py-2'>
+            <div class='row'>
+                <div class='text-center pt-2'>
+                    <h2>Prośby o zostanie przedsiębiorcą</h2>
+                    <hr>
+                </div>
+            </div>
+            
+            @if (count($pending)!=0)
+                @foreach ( $pending as $pen)
+                    <div class='row company mx-3 pt-2' style='box-shadow: 0.1em 0.1em 0.1em 0.1em gray;'>
+                        <div class='d-flex justify-content-between py-1'>
+                            <p>{{ $pen->user->name }} {{ $pen->user->surname }}</p>
+                            <a href={{ route('user.show', ['id' => $pen->user->id]) }} class='btn btn-success mb-1'>Pokaż</a>
+                        </div>
+                    </div>
+                @endforeach
+            @else 
+                <div class='row mx-3'>
+                    <div class='col d-flex justify-content-center pb-2'>
+                        </h5>Brak próśb</h5>
+                    </div>
+                </div>
+            @endif 
+        </div>
+    @endif
 
     <div class='company col-md-8 col-12 my-2 py-2'>
         <div class='row'>

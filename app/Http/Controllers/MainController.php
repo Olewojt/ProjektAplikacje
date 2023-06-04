@@ -8,15 +8,14 @@ use Illuminate\View\View;
 
 use App\Models\Voivodeship;
 use App\Models\Company;
+use App\Models\CompanyAddress;
 use App\Models\Industry;
+use Spatie\LaravelIgnition\Exceptions\ViewException;
 
 class MainController extends Controller
 {
     public function index(): View
     {
-        $voivodeship = Voivodeship::all();
-        $company = Company::all();
-        $industry = Industry::all();
-        return view('main', ['voivodeship' => $voivodeship, 'company' => $company, 'industry' => $industry]);
+        return view('start');
     }
 }

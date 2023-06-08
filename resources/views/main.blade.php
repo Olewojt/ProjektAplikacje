@@ -6,39 +6,37 @@
         <section id="companies" class="col-md-9">
             @if (count($company)!=0)
                 @foreach ($company as $company)
-                    <div class='row company'>
-                    <section class='col' style='padding:1em'>
-                        <div class='row d-flex justify-content-between'>
-                            <h3 class='col'>{{ $company->name }}</h3>
-                        </div>
-
-                        <div class='row'>
-                            <h6>+48 {{ $company->phone_number }}</h6>
-                        </div>
-
-                        <div class='row'>
-                            <p>{{ $company->description }}</p>
-                            <hr>
-                            <div class='col'>
-                                <p class='col text-start mb-0'>Branża: <b>{{ $company->industry->name }}</b></p>
+                    <div class='row company mx-0'>
+                        <div class='col-md-9' style='padding:1em'>
+                            <div class='row d-flex justify-content-between'>
+                                <a href={{ route('company.show', $company->id) }} class='col h3 text-decoration-none'>{{ $company->name }}</a>
                             </div>
-                            <div class='col'>
-                                <p class='col text-end mb-0'>
-                                    @if ($company->average_rating != 0)
-                                        <i class="bi bi-star-fill"> {{ $company->average_rating }}/5</i>
-                                    @else
-                                        <i class="bi bi-star-fill"> Brak opinii</i>
-                                    @endif
-                                </p>
+
+                            <div class='row'>
+                                <h6>+48 {{ $company->phone_number }}</h6>
+                            </div>
+
+                            <div class='row'>
+                                <p class='trunc'>{{ $company->description }}</p>
+                                <hr>
+                                <div class='col'>
+                                    <p class='col text-start mb-0'>Branża: <b>{{ $company->industry->name }}</b></p>
+                                </div>
+                                <div class='col'>
+                                    <p class='col text-end mb-0'>
+                                        @if ($company->average_rating != 0)
+                                            <i class="bi bi-star-fill"> {{ $company->average_rating }}/5</i>
+                                        @else
+                                            <i class="bi bi-star-fill"> Brak opinii</i>
+                                        @endif
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </section>
-
-                    <div class='vr bg-success'></div>
-
-                    <section class='col-2 d-flex align-items-center justify-content-center'>
-                        <a href={{ route('company.show', $company->id) }}><button class='btn btn-info'>Więcej</button></a>
-                    </section>
+                        <div class='vr col-md-1 bg-success'></div>
+                        <div class='col d-flex align-items-center justify-content-center'>
+                            <a href={{ route('company.show', $company->id) }}><img class='text-center' alt="Nie udało się wczytać loga firmy :(" src={{ asset('storage/' . $company->logo) }} style='max-height:5em; max-width:5em'></a>
+                        </div>
                     </div>
                 @endforeach
             @else 

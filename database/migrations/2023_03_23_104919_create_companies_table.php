@@ -21,9 +21,10 @@ return new class extends Migration
             $table->string('phone_number', 9);
             $table->string('e_mail', 100);
             $table->string('website', 200);
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('industry_id')->constrained('industries');
             $table->integer('average_rating')->default(0);
+            $table->string('logo', 512)->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('industry_id')->constrained('industries');
         });
     }
 

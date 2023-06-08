@@ -45,16 +45,19 @@ Route::controller(CompanyController::class)->group(function (){
     Route::get('/company/{id}', 'show')->name('company.show')->where('id', '[0-9]+');
     Route::get('/company/create', 'create')->name('company.create');
     Route::post('/company/store', 'store')->name('company.store');
-    Route::get('/company/{id}/edit', 'edit')->name('company.edit');
-    Route::post('/company/{id}/edit', 'update')->name('company.update');
-    Route::get('/company/{id}/delete', 'destroy')->name('company.delete');
-    Route::get('/company/{id}/addReview', 'review_form')->name('company.reviewForm');
-    Route::post('/company/{id}/addReview', 'review_add')->name('company.addReview');
+    Route::get('/company/{id}/edit', 'edit')->name('company.edit')->where('id', '[0-9]+');
+    Route::post('/company/{id}/edit', 'update')->name('company.update')->where('id', '[0-9]+');
+    Route::get('/company/{id}/delete', 'destroy')->name('company.delete')->where('id', '[0-9]+');
+    Route::get('/company/{id}/addReview', 'review_form')->name('company.reviewForm')->where('id', '[0-9]+');
+    Route::post('/company/{id}/addReview', 'review_add')->name('company.addReview')->where('id', '[0-9]+');
 });
 
 Route::controller(UserController::class)->group(function (){
-    Route::get('/user/{id}', 'show')->name('user.show');
-    Route::get('/user/{id}/accept', 'accept')->name('user.accept');
+    Route::get('/user/{id}', 'show')->name('user.show')->where('id', '[0-9]+');
+    Route::get('/user/{id}/accept', 'accept')->name('user.accept')->where('id', '[0-9]+');
+    Route::get('/user/{id}/edit', 'edit')->name('user.edit')->where('id', '[0-9]+');
+    Route::post('/user/{id}/edit', 'update')->name('user.update')->where('id', '[0-9]+');
+    Route::get('/user/{id}/delete', 'destroy')->name('user.delete')->where('id', '[0-9]+');
 });
 
 Route::any('{url}', function(){

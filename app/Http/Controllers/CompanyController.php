@@ -66,8 +66,9 @@ class CompanyController extends Controller
             'building_number' => 'required|max:10',
             'voivodeship' => 'required',
             'zip_code' => 'required|max:6',
-            'nip' => 'required|max:10|unique:companies',
-            'regon' => 'required|max:14|unique:companies',
+            'nip' => 'required|max:10|unique:companies|regex:/^\d+$/',
+            'regon' => 'required|max:14|unique:companies|regex:/^\d+$/',
+            'logo' => 'required|mimes:svg',
             'description' => 'required|max:1024',
             'industry' => 'required',
         ];
@@ -100,6 +101,9 @@ class CompanyController extends Controller
             'industry.required' => "Pole branża jest wymagane",
             'nip.unique' => "Podany nip już istnieje!",
             'regon.unique' => "Pole regon już istnieje!",
+            'phone_number.regex' => "Pole numer telefonu jest nieprawidłowe",
+            'nip.regex' => "Pole nip jest nieprawidłowe",
+            'regon.regex' => "Pole regon jest nieprawidłowe",
         ];
 
         $validator = Validator::make($data->all(), $rules, $messages);
@@ -107,6 +111,8 @@ class CompanyController extends Controller
         if ($validator->fails()) {
             return redirect()->route('company.create')->withErrors($validator)->withInput();
         }
+
+        $logoPath = $data->file('logo')->store('logos', 'public');
 
         $company = new Company();
         $company->user_id = Auth::user()->id;
@@ -116,6 +122,7 @@ class CompanyController extends Controller
         $company->website = $data['website'];
         $company->nip = $data['nip'];
         $company->regon = $data['regon'];
+        $company->logo = $logoPath;
         $company->description = $data['description'];
         $company->industry_id = $data['industry'];
 
@@ -183,8 +190,8 @@ class CompanyController extends Controller
             'building_number' => 'required|max:10',
             'voivodeship' => 'required',
             'zip_code' => 'required|max:6',
-            'nip' => 'required|max:10',
-            'regon' => 'required|max:14',
+            'nip' => 'required|max:10|regex:/^\d+$/',
+            'regon' => 'required|max:14|regex:/^\d+$/',
             'description' => 'required|max:1024',
             'industry' => 'required',
         ];
@@ -215,6 +222,9 @@ class CompanyController extends Controller
             'regon.required' => "Pole regon jest wymagane",
             'description.required' => "Pole opis jest wymagane",
             'industry.required' => "Pole branża jest wymagane",
+            'phone_number.regex' => "Pole numer telefonu jest nieprawidłowe",
+            'nip.regex' => "Pole nip jest nieprawidłowe",
+            'regon.regex' => "Pole regon jest nieprawidłowe",
         ];
 
         $validator = Validator::make($data->all(), $rules, $messages);

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="company">
-        <form method="POST" action={{ route('company.store') }}>
+        <form method="POST" action={{ route('company.store') }} enctype='multipart/form-data'>
             <div class='row'>
                 <div class='col-md-6 px-4'>
                     <label for='name' class='formLabels'>Nazwa firmy</label><br/>
@@ -64,6 +64,14 @@
                 <div class='col-md-6 px-4'>
                     <label for='regon' class='formLabels'>REGON</label><br/>
                     <input type='text' name='regon' class="form-control"  maxlength=14 required>
+                </div>
+            </div>
+            <hr>
+
+            <div class='row'>
+                <div class='col-md-6 px-4'>
+                    <label for='logo' class='formLabels'>Logo</label><br/>
+                    <input type='file' accept='.svg' class='form-control' name='logo'>
                 </div>
             </div>
 

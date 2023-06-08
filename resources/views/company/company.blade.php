@@ -24,6 +24,10 @@
                     <div class='text-center fs-1'>{{ $company->name }}</div>
                     <hr>
                 </div>
+                <div class='row d-flex justify-content-center'>
+                    <img class='text-center' alt="Nie udało się wczytać loga firmy :(" src={{ asset('storage/' . $company->logo) }} style='max-height:15em; max-width:30em'>
+                    <hr class='mt-2'>
+                </div>
                 <div class='row'>
                     <p class="bi bi-person"> <a href={{ route('user.show', ['id' => $company->user->id]) }}>{{ $company->user->name }}</a></p>
                     <p class="bi bi-telephone"> +48 {{ $company->phone_number }}</p>

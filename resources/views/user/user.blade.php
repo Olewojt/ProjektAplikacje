@@ -7,15 +7,22 @@
 @endif
 
 @section('content')
-<script>
-</script>
 <div class="d-flex flex-column align-items-center">
     <div class='company col-md-8 col-12 my-2 py-2'>
+        @auth
+            @if(Auth::user()->privilege_id==2)
+                <div class='row'>
+                    <a class='col-md-6 text-center' href={{ route('user.edit', ['id' => $user->id]) }}><button class='btn btn-info'>Aktualizuj</button></a>
+                    <a class='col-md-6 text-center mb-2' href={{ route('user.delete', ['id' => $user->id] )}} ><button onclick="return confirm('Czy napewno chcesz usunąć?')" class='btn btn-danger'>Usuń</button></a>
+                </div>
+                <hr class='mt-0'>
+            @endif
+        @endauth
+
         <div class='row'>
-            <div class='text-center pt-3'>
+            <div class='text-center'>
                 <h2>{{ $user->name }}  {{ $user->surname}}</h2>
                 <hr>
-
                 @if ($user->privilege_id==0)
                     @if ( isset($user->pending) )
                         @if ($user->pending->accepted == 0)
@@ -42,28 +49,29 @@
             </div>
 
             @auth 
-                <div class='row'>
-                    <div class='col-md-6 px-4'>
-                        <label for='name' class='formLabels'>Imię</label><br/>
-                        <input type='text' name='name' value={{ $user->name }} class="form-control" disabled>
+                @if (Auth::user()->privilege_id == 2)
+                    <div class='row'>
+                        <div class='col-md-6 px-4'>
+                            <label for='name' class='formLabels'>Imię</label><br/>
+                            <input type='text' name='name' value={{ $user->name }} class="form-control" disabled>
+                        </div>
+                        <div class='col-md-6 px-4'>
+                            <label for='surname' class='formLabels'>Nazwisko</label><br/>
+                            <input type='text' name='surname' value={{ $user->surname }} class="form-control" disabled>
+                        </div>
                     </div>
-                    <div class='col-md-6 px-4'>
-                        <label for='surname' class='formLabels'>Nazwisko</label><br/>
-                        <input type='text' name='surname' value={{ $user->surname }} class="form-control" disabled>
-                    </div>
-                </div>
 
-                <div class='row pb-2'>
-                    <div class='col-md-6 px-4'>
-                        <label for='e_mail' class='formLabels'>Numer telefonu</label><br/>
-                        <input type='email' name='e_mail' value={{ $user->e_mail }} class="form-control" disabled>
+                    <div class='row pb-2'>
+                        <div class='col-md-6 px-4'>
+                            <label for='e_mail' class='formLabels'>E-mail</label><br/>
+                            <input type='email' name='e_mail' value={{ $user->e_mail }} class="form-control" disabled>
+                        </div>
+                        <div class='col-md-6 px-4'>
+                            <label for='phone_number' class='formLabels'>Numer telefonu</label><br/>
+                            <input type='text' name='phone_number' value={{ $user->phone_number }} class="form-control" disabled>
+                        </div>
                     </div>
-                    <div class='col-md-6 px-4'>
-                        <label for='phone_number' class='formLabels'>Numer telefonu</label><br/>
-                        <input type='text' name='phone_number' value={{ $user->phone_number }} class="form-control" disabled>
-                    </div>
-                </div>
-
+                @endif
             @endauth
         </div>
     </div>

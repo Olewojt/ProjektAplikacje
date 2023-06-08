@@ -19,7 +19,18 @@
                         <div class='row'>
                             <p>{{ $company->description }}</p>
                             <hr>
-                            <p class='col text-start mb-0'>Branża: <b>{{ $company->industry->name }}</b></p>
+                            <div class='col'>
+                                <p class='col text-start mb-0'>Branża: <b>{{ $company->industry->name }}</b></p>
+                            </div>
+                            <div class='col'>
+                                <p class='col text-end mb-0'>
+                                    @if ($company->average_rating != 0)
+                                        <i class="bi bi-star-fill"> {{ $company->average_rating }}/5</i>
+                                    @else
+                                        <i class="bi bi-star-fill"> Brak opinii</i>
+                                    @endif
+                                </p>
+                            </div>
                         </div>
                     </section>
 
@@ -44,29 +55,29 @@
                     <hr>
 
                     <label class="formLabels" for='name'>Nazwa</label>
-                    <input type="text" class="form-control" name='name' placeholder="Nazwa firmy">
+                    <input type="text" class="form-control" name='name' value="{{ Request::old('name') }}" placeholder="Nazwa firmy">
 
                     <label class="formLabels">Województwo</label>
                     <select class="form-select" name='voivodeship'>
-                        <option value='0' selected></option>
+                        <option value='0'></option>
                         @foreach ($voivodeship as $elem)
-                            <option value="{{ $elem->id }}">{{ $elem->name }}</option>
+                            <option @if($elem->id==old('voivodeship')) selected @endif value="{{ $elem->id }}">{{ $elem->name }}</option>
                         @endforeach
                     </select>
 
                     <label class="formLabels">Branża</label>
                     <select class="form-select" name='industry'>
-                        <option value='0' selected></option>
+                        <option value='0'></option>
                         @foreach ($industry as $elem)
-                            <option value={{ $elem->id }}>{{ $elem->name }}</option>
+                            <option @if($elem->id==old('industry')) selected @endif value={{ $elem->id }}>{{ $elem->name }}</option>
                         @endforeach
                     </select>
 
                     <label class="formLabels">Opinie</label>
-                    <select class="form-select">
+                    <select class="form-select" name='order'>
                         <option selected value="0"></option>
-                        <option value="1">Najgorsze</option>
-                        <option value="2">Najgorsze</option>
+                        <option value="asc">Rosnąco</option>
+                        <option value="desc">Malejąco</option>
                     </select>
 
                     <button type="submit" class="btn btn-success searchButton">Szukaj</button>

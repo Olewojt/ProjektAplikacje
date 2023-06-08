@@ -21,7 +21,7 @@ class CompanyAddress extends Model
         'zip_code',
     ];
 
-    public function address() {
+    public function company() {
         return $this->belongsTo(Company::class);
     }
 

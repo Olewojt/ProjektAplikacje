@@ -1,6 +1,12 @@
 <?php
 
 namespace App\Providers;
+use App\Models\Company;
+use App\Models\CompanyAddress;
+use App\Models\Review;
+use App\Observers\CompanyAddressObserver;
+use App\Observers\CompanyObserver;
+use App\Observers\ReviewObserver;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -25,7 +31,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Company::observe(CompanyObserver::class);
+        CompanyAddress::observe(CompanyAddressObserver::class);
+        Review::observe(ReviewObserver::class);
     }
 
     /**

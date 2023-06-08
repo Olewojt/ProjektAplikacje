@@ -21,6 +21,19 @@ class CompanyController extends Controller
     {
         $voivodeship = Voivodeship::all();
         $company = Company::all();
+        // $avgRating = [];
+        // foreach ($company as $elem){
+        //     if(!empty($elem->reviews->all())){
+        //         $avg = 0;
+        //         foreach ($elem->reviews->all() as $rating){
+        //             $avg = $avg + $rating->rating;
+        //         }
+        //         $avg = $avg/count($elem->reviews->all());
+        //         array_push($avgRating, ['id'=>$elem->id, 'avg'=> $avg]);
+        //     } else {
+        //         array_push($avgRating, ['id'=>$elem->id, 'avg'=> 'Brak opinii']);
+        //     }
+        // }
         $industry = Industry::all();
         return view('main', ['voivodeship' => $voivodeship, 'company' => $company, 'industry' => $industry]);
     }
@@ -140,7 +153,7 @@ class CompanyController extends Controller
     {
         if (Auth::check()){
             $company = Company::find($id);
-            if ($company->user_id==Auth::user()->id){
+            if ($company->user_id==Auth::user()->id || Auth::user()->privilege_id==2){
                 $voivodeships = Voivodeship::all();
                 $industries = Industry::all();
                 if ($company == null){
@@ -244,9 +257,13 @@ class CompanyController extends Controller
             return view('notFound');
         }
         if (Auth::check()){
+            $company_owner = $company->user_id;
             if($company->user_id==Auth::user()->id){
                 $company->destroy($id);
                 return redirect()->to('/dashboard');
+            } else if(Auth::user()->privilege_id==2){
+                $company->destroy($id);
+                return redirect()->to('/user/'.$company_owner);
             }
             return redirect('main');
         }
@@ -320,9 +337,16 @@ class CompanyController extends Controller
             $query->where('companies.industry_id', $request->input('industry'));
         }
 
+        if ($request->has('order') & $_GET['order']!='0') {
+            if ($request->input('order') == 'asc' | $request->input('order') == 'desc'){
+                $query->orderBy('average_rating', $request->input('order'));
+            }
+        }
+
         $company = $query->get();
         $voivodeship = Voivodeship::all();
         $industry = Industry::all();
+        session()->flashInput($request->input());
 
         return view('main', ['voivodeship' => $voivodeship, 'company' => $company, 'industry' => $industry]);
     }

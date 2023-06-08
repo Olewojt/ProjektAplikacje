@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('website', 200);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('industry_id')->constrained('industries');
+            $table->integer('average_rating')->default(0);
         });
     }
 

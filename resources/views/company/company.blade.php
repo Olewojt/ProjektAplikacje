@@ -10,12 +10,23 @@
     <div id="content" class="container-fluid">
         <div class='row mx-auto'>
             <div id="company" class='col-md-7 bg- company'>
+                @auth
+                    @if(Auth::user()->id == $company->user_id | Auth::user()->privilege_id==2)
+                        <div class='row mt-2'>
+                            <a href={{ route('company.update', $company->id) }} class='col-md-6 text-center'><button class='btn btn-info'>Aktualizuj</button></a>
+                            <a href={{ route('company.delete', $company->id) }} class='col-md-6 text-center mb-2'><button onclick="return confirm('Czy napewno chcesz usunąć?')" class='btn btn-danger'>Usuń</button></a>
+                            <hr>
+                        </div>
+                    @endauth
+                @endauth
+
                 <div class='row'>
                     <div class='text-center fs-1'>{{ $company->name }}</div>
                     <hr>
                 </div>
                 <div class='row'>
-                    <p class="col-md bi bi-telephone"> +48 {{ $company->phone_number }}</p>
+                    <p class="bi bi-person"> <a href={{ route('user.show', ['id' => $company->user->id]) }}>{{ $company->user->name }}</a></p>
+                    <p class="bi bi-telephone"> +48 {{ $company->phone_number }}</p>
                     <p class="bi bi-envelope-at"> {{ $company->e_mail }}</p>
                     <p class="bi bi-compass"> <a href="http://{{ $company->website }}" target='_blank'>{{ $company->website }}</a></p>
                     <hr>
@@ -54,7 +65,7 @@
                             <h4>{{ $review->title }}</h4>
                             <hr>
                             <p style='font-size: 0.8em'>{{ $review->description }}</p>
-                            <p class='d-flex text-start justify-content-between'>{{ $review->user->name }} {{ $review->user->surname }}<i class="bi bi-star-fill"> {{ $review->rating }}/5</i></p>
+                            <p class='d-flex text-start justify-content-between'><a href={{ route('user.show', ['id' => $review->user->id]) }}>{{ $review->user->name }} {{ $review->user->surname }}</a><i class="bi bi-star-fill"> {{ $review->rating }}/5</i></p>
                         </div>
                     @endforeach
                 @endif

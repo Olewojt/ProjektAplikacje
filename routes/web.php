@@ -52,8 +52,10 @@ Route::controller(CompanyController::class)->group(function (){
     Route::post('/company/{id}/addReview', 'review_add')->name('company.addReview');
 });
 
-Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
-Route::get('/user/{id}/accept', [UserController::class, 'accept'])->name('user.accept');
+Route::controller(UserController::class)->group(function (){
+    Route::get('/user/{id}', 'show')->name('user.show');
+    Route::get('/user/{id}/accept', 'accept')->name('user.accept');
+});
 
 Route::any('{url}', function(){
     return redirect('/');

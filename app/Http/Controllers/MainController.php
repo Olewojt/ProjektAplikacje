@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 use App\Models\Voivodeship;
-use App\Models\Company;
-use App\Models\CompanyAddress;
 use App\Models\Industry;
 use Spatie\LaravelIgnition\Exceptions\ViewException;
 
@@ -16,6 +14,8 @@ class MainController extends Controller
 {
     public function index(): View
     {
-        return view('start');
+        $voivodeships = Voivodeship::all();
+        $industries = Industry::all();
+        return view('start', ['voivodeship'=>$voivodeships, 'industry'=>$industries]);
     }
 }

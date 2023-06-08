@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,14 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             PendingSeeder::class,
         ]);
+
+        $companies = Company::all();
+        foreach ($companies as $company){
+            if ( count($company->reviews) != 0 ){
+                $rating = $company->reviews()->avg('rating');
+                $company->average_rating = $rating;
+                $company->saveQuietly();
+            }
+        }
     }
 }

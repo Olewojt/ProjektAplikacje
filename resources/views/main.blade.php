@@ -4,8 +4,8 @@
 <div id="content" class="container-fluid">
     <div class="row">
         <section id="companies" class="col-md-9">
-            @if (count($company)!=0)
-                @foreach ($company as $company)
+            @if (count($companies)!=0)
+                @foreach ($companies as $company)
                     <div class='row company mx-0'>
                         <div class='col-md-9' style='padding:1em'>
                             <div class='row d-flex justify-content-between'>
@@ -35,10 +35,17 @@
                         </div>
                         <div class='vr col-md-1 bg-success'></div>
                         <div class='col d-flex align-items-center justify-content-center'>
-                            <a href={{ route('company.show', $company->id) }}><img class='text-center' alt="Nie udało się wczytać loga firmy :(" src={{ asset('storage/' . $company->logo) }} style='max-height:5em; max-width:5em'></a>
+                            @if ($company->logo != null)
+                                <a href={{ route('company.show', $company->id) }}><img class='text-center' alt="Nie udało się wczytać loga firmy :(" src={{ asset('storage/'.$company->logo) }} style='max-height:5em; max-width:5em'></a>
+                            @else
+                                <p>Brak loga</p>
+                            @endif
                         </div>
                     </div>
                 @endforeach
+                <div class="d-flex justify-content-center">
+                    {{ $companies->links('layouts.pagination') }}
+                </div>
             @else 
                 <div class='row company'>
                     <h3 class='text-center my-2'>Brak wyników!</h3>

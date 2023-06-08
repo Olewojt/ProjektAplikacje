@@ -15,7 +15,7 @@
                         <div class='row mt-2'>
                             <a href={{ route('company.update', $company->id) }} class='col-md-6 text-center'><button class='btn btn-info'>Aktualizuj</button></a>
                             <a href={{ route('company.delete', $company->id) }} class='col-md-6 text-center mb-2'><button onclick="return confirm('Czy napewno chcesz usunąć?')" class='btn btn-danger'>Usuń</button></a>
-                            <hr>
+                            <hr class='mb-0'>
                         </div>
                     @endauth
                 @endauth
@@ -24,10 +24,12 @@
                     <div class='text-center fs-1'>{{ $company->name }}</div>
                     <hr>
                 </div>
-                <div class='row d-flex justify-content-center'>
-                    <img class='text-center' alt="Nie udało się wczytać loga firmy :(" src={{ asset('storage/' . $company->logo) }} style='max-height:15em; max-width:30em'>
-                    <hr class='mt-2'>
-                </div>
+                @if ( $company->logo != null )
+                    <div class='row d-flex justify-content-center'>
+                            <img class='text-center' alt="Nie udało się wczytać loga firmy :(" src={{ asset('storage/' . $company->logo) }} style='max-height:15em; max-width:30em'>
+                            <hr class='mt-2'>
+                    </div>
+                @endif
                 <div class='row'>
                     <p class="bi bi-person"> <a href={{ route('user.show', ['id' => $company->user->id]) }}>{{ $company->user->name }}</a></p>
                     <p class="bi bi-telephone"> +48 {{ $company->phone_number }}</p>

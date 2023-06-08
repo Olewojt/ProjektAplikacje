@@ -20,22 +20,13 @@ class CompanyController extends Controller
     public function index()
     {
         $voivodeship = Voivodeship::all();
-        $company = Company::all();
-        // $avgRating = [];
-        // foreach ($company as $elem){
-        //     if(!empty($elem->reviews->all())){
-        //         $avg = 0;
-        //         foreach ($elem->reviews->all() as $rating){
-        //             $avg = $avg + $rating->rating;
-        //         }
-        //         $avg = $avg/count($elem->reviews->all());
-        //         array_push($avgRating, ['id'=>$elem->id, 'avg'=> $avg]);
-        //     } else {
-        //         array_push($avgRating, ['id'=>$elem->id, 'avg'=> 'Brak opinii']);
-        //     }
-        // }
+        if (Company::all()->count() <= 10){
+            $companies = Company::paginate(Company::all()->count());
+        } else {
+            $companies = Company::paginate(10);
+        }
         $industry = Industry::all();
-        return view('main', ['voivodeship' => $voivodeship, 'company' => $company, 'industry' => $industry]);
+        return view('main', ['voivodeship' => $voivodeship, 'companies' => $companies, 'industry' => $industry]);
     }
 
     /**
@@ -333,8 +324,10 @@ class CompanyController extends Controller
     {
         $query = Company::query();
 
-        if ($request->has('name') & strlen($_GET['name'])!=0) {
-            $query->where('name', 'LIKE', '%'.$request->input('name').'%');
+        if ($request->has('name')) {
+            if (strlen($_GET['name'])!=0){
+                $query->where('name', 'LIKE', '%'.$request->input('name').'%');
+            }
         }
 
         if ($request->has('voivodeship') & $_GET['voivodeship']!='0') {
@@ -353,11 +346,15 @@ class CompanyController extends Controller
             }
         }
 
-        $company = $query->get();
+        if ($query->count() <= 10){
+            $companies = $query->paginate($query->count())->appends(request()->except('page'));
+        } else {
+            $companies = $query->paginate(10)->appends(request()->query());
+        }
         $voivodeship = Voivodeship::all();
         $industry = Industry::all();
         session()->flashInput($request->input());
 
-        return view('main', ['voivodeship' => $voivodeship, 'company' => $company, 'industry' => $industry]);
+        return view('main', ['voivodeship' => $voivodeship, 'companies' => $companies, 'industry' => $industry]);
     }
 }

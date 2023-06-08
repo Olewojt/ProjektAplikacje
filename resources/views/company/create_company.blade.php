@@ -33,7 +33,7 @@
                     <label for='building_number' class='formLabels'>Nr. budynku</label><br/>
                     <input type='text' name='building_number' class="form-control"  maxlength=10 required>
                     <label for='zip_code' class='formLabels'>Kod pocztowy</label><br/>
-                    <input type='text' name='zip_code' class="form-control"  maxlength=6 required>
+                    <input type='text' pattern='^\d{2}-\d{3}$' name='zip_code' class="form-control"  maxlength=6 required>
                 </div>
                 <div class='col-md-6 px-4'>
                         <label for='city' class='formLabels'>Miasto</label><br/>

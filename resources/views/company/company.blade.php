@@ -77,7 +77,7 @@
                 @endif
 
                 @auth
-                    @if ( count($company->reviews->where('user_id', Auth::user()->id))==0 )
+                    @if ( count($company->reviews->where('user_id', Auth::user()->id))==0 & Auth::user()->id!=$company->user_id)
                         <div class='row mx-2 pt-2'>
                             <a href={{ route('company.addReview', ['id'=>$company->id]) }} class='btn btn-info'>Dodaj</a>
                         </div>

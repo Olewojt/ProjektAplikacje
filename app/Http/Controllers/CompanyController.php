@@ -65,36 +65,38 @@ class CompanyController extends Controller
         ];
 
         $messages = [
-            'name.max' => "Pole nazwa jest za długie",
-            'phone_number.max' => "Pole numer telefonu jest za długie",
-            'e_mail.max' => "Pole e-mail jest za długie",
-            'website.max' => "Pole strona jest za długie",
-            'street.max' => "Pole ulica jest za długie",
-            'city.max' => "Pole miasto jest za długie",
-            'building_number.max' => "Pole nr. budynku jest za długie",
-            'voivodeship.max' => "Pole województwo jest za długie",
-            'zip_code.max' => "Pole kod pocztowy jest za długie",
-            'nip.max' => "Pole nip jest za długie",
-            'regon.max' => "Pole regon jest za długie",
-            'desciption.max' => "Pole opis jest za długie",
             'name.required' => "Pole nazwa jest wymagane",
+            'name.max' => "Pole nazwa jest za długie",
             'phone_number.required' => "Pole numer telefonu jest wymagane",
-            'e_mail.required' => "Pole e-mail jest wymagane",
-            'website.required' => "Pole strona jest wymagane",
-            'street.required' => "Pole ulica jest wymagane",
-            'city.required' => "Pole miasto jest wymagane",
-            'building_number.required' => "Pole nr. budynku jest wymagane",
-            'voivodeship.required' => "Pole województwo jest wymagane",
-            'zip_code.required' => "Pole kod pocztowy jest wymagane",
-            'nip.required' => "Pole nip jest wymagane",
-            'regon.required' => "Pole regon jest wymagane",
-            'description.required' => "Pole opis jest wymagane",
-            'industry.required' => "Pole branża jest wymagane",
-            'nip.unique' => "Podany nip już istnieje!",
-            'regon.unique' => "Pole regon już istnieje!",
+            'phone_number.max' => "Pole numer telefonu jest za długie",
             'phone_number.regex' => "Pole numer telefonu jest nieprawidłowe",
+            'e_mail.required' => "Pole e-mail jest wymagane",
+            'e_mail.max' => "Pole e-mail jest za długie",
+            'website.required' => "Pole strona jest wymagane",
+            'website.max' => "Pole strona jest za długie",
+            'street.required' => "Pole ulica jest wymagane",
+            'street.max' => "Pole ulica jest za długie",
+            'city.required' => "Pole miasto jest wymagane",
+            'city.max' => "Pole miasto jest za długie",
+            'building_number.required' => "Pole nr. budynku jest wymagane",
+            'building_number.max' => "Pole nr. budynku jest za długie",
+            'voivodeship.required' => "Pole województwo jest wymagane",
+            'voivodeship.max' => "Pole województwo jest za długie",
+            'zip_code.required' => "Pole kod pocztowy jest wymagane",
+            'zip_code.max' => "Pole kod pocztowy jest za długie",
+            'nip.required' => "Pole nip jest wymagane",
+            'nip.max' => "Pole nip jest za długie",
+            'nip.unique' => "Podany nip już istnieje!",
             'nip.regex' => "Pole nip jest nieprawidłowe",
+            'regon.required' => "Pole regon jest wymagane",
+            'regon.max' => "Pole regon jest za długie",
+            'regon.unique' => "Pole regon już istnieje!",
             'regon.regex' => "Pole regon jest nieprawidłowe",
+            'logo.required' => "Logo jest wymagane!",
+            'logo.mimetypes' => "Nieprawidłowy format loga",
+            'description.required' => "Pole opis jest wymagane",
+            'desciption.max' => "Pole opis jest za długie",
+            'industry.required' => "Pole branża jest wymagane",
         ];
 
         $validator = Validator::make($data->all(), $rules, $messages);
@@ -183,39 +185,44 @@ class CompanyController extends Controller
             'zip_code' => 'required|max:6',
             'nip' => 'required|max:10|regex:/^\d+$/',
             'regon' => 'required|max:14|regex:/^\d+$/',
+            'logo' => 'required|mimes:svg',
             'description' => 'required|max:1024',
             'industry' => 'required',
         ];
 
         $messages = [
-            'name.max' => "Pole nazwa jest za długie",
-            'phone_number.max' => "Pole numer telefonu jest za długie",
-            'e_mail.max' => "Pole e-mail jest za długie",
-            'website.max' => "Pole strona jest za długie",
-            'street.max' => "Pole ulica jest za długie",
-            'city.max' => "Pole miasto jest za długie",
-            'building_number.max' => "Pole nr. budynku jest za długie",
-            'voivodeship.max' => "Pole województwo jest za długie",
-            'zip_code.max' => "Pole kod pocztowy jest za długie",
-            'nip.max' => "Pole nip jest za długie",
-            'regon.max' => "Pole regon jest za długie",
-            'desciption.max' => "Pole opis jest za długie",
             'name.required' => "Pole nazwa jest wymagane",
+            'name.max' => "Pole nazwa jest za długie",
             'phone_number.required' => "Pole numer telefonu jest wymagane",
-            'e_mail.required' => "Pole e-mail jest wymagane",
-            'website.required' => "Pole strona jest wymagane",
-            'street.required' => "Pole ulica jest wymagane",
-            'city.required' => "Pole miasto jest wymagane",
-            'building_number.required' => "Pole nr. budynku jest wymagane",
-            'voivodeship.required' => "Pole województwo jest wymagane",
-            'zip_code.required' => "Pole kod pocztowy jest wymagane",
-            'nip.required' => "Pole nip jest wymagane",
-            'regon.required' => "Pole regon jest wymagane",
-            'description.required' => "Pole opis jest wymagane",
-            'industry.required' => "Pole branża jest wymagane",
+            'phone_number.max' => "Pole numer telefonu jest za długie",
             'phone_number.regex' => "Pole numer telefonu jest nieprawidłowe",
+            'e_mail.required' => "Pole e-mail jest wymagane",
+            'e_mail.max' => "Pole e-mail jest za długie",
+            'website.required' => "Pole strona jest wymagane",
+            'website.max' => "Pole strona jest za długie",
+            'street.required' => "Pole ulica jest wymagane",
+            'street.max' => "Pole ulica jest za długie",
+            'city.required' => "Pole miasto jest wymagane",
+            'city.max' => "Pole miasto jest za długie",
+            'building_number.required' => "Pole nr. budynku jest wymagane",
+            'building_number.max' => "Pole nr. budynku jest za długie",
+            'voivodeship.required' => "Pole województwo jest wymagane",
+            'voivodeship.max' => "Pole województwo jest za długie",
+            'zip_code.required' => "Pole kod pocztowy jest wymagane",
+            'zip_code.max' => "Pole kod pocztowy jest za długie",
+            'nip.required' => "Pole nip jest wymagane",
+            'nip.max' => "Pole nip jest za długie",
+            'nip.unique' => "Podany nip już istnieje!",
             'nip.regex' => "Pole nip jest nieprawidłowe",
+            'regon.required' => "Pole regon jest wymagane",
+            'regon.max' => "Pole regon jest za długie",
+            'regon.unique' => "Pole regon już istnieje!",
             'regon.regex' => "Pole regon jest nieprawidłowe",
+            'logo.required' => "Logo jest wymagane!",
+            'logo.mimetypes' => "Nieprawidłowy format loga",
+            'description.required' => "Pole opis jest wymagane",
+            'desciption.max' => "Pole opis jest za długie",
+            'industry.required' => "Pole branża jest wymagane",
         ];
 
         $validator = Validator::make($data->all(), $rules, $messages);
@@ -224,13 +231,20 @@ class CompanyController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $logoPath = $data->file('logo')->store('logos', 'public');
+
         $company->user_id = Auth::user()->id;
         $company->name = $data['name'];
         $company->phone_number = $data['phone_number'];
         $company->e_mail = $data['e_mail'];
         $company->website = $data['website'];
-        $company->nip = $data['nip'];
-        $company->regon = $data['regon'];
+        if ($company->nip != $data['nip']){
+            $company->nip = $data['nip'];
+        }
+        if ($company->regon != $data['regon']){
+            $company->regon = $data['regon'];
+        }
+        $company->logo = $logoPath;
         $company->description = $data['description'];
         $company->industry_id = $data['industry'];
 

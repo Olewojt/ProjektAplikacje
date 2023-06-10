@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="company">
-        <form method="POST" action={{ route('company.update', ['id'=>$company->id]) }}>
+        <form method="POST" action={{ route('company.update', ['id'=>$company->id]) }} enctype='multipart/form-data'>
             <div class='row'>
                 <div class='col-md-6 px-4'>
                     <label for='name' class='formLabels'>Nazwa firmy</label><br/>
@@ -67,6 +67,15 @@
                 </div>
             </div>
 
+            <hr>
+
+            <div class='row'>
+                <div class='col-md-6 px-4'>
+                    <label for='logo' class='formLabels'>Logo</label><br/>
+                    <input type='file' accept='.svg' class='form-control' name='logo'>
+                </div>
+            </div>
+            
             <hr>
 
             <div class='row'>

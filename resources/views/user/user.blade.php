@@ -102,7 +102,7 @@
         @endif 
     </div>
 
-    @if ($user->privilege_id==1)
+    @if ($user->privilege_id==1 || $user->privilege_id==2)
         <div class='company col-md-8 col-12 my-2 py-2'>
             <div class='row'>
                 <div class='text-center pt-2'>

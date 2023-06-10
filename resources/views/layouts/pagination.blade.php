@@ -3,7 +3,7 @@
         @if ($paginator->hasPages())
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
+                    <span class="page-link">Poprzednia</span>
                 </li>
             @else
                 <li class="page-item">
@@ -29,7 +29,7 @@
                 </li>
             @else
                 <li class="page-item disabled">
-                    <span class="page-link">Next</span>
+                    <span class="page-link">Następna</span>
                 </li>
             @endif
         @endif

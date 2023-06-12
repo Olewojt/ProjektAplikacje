@@ -13,7 +13,7 @@ class ReviewObserver
     public function created(Review $review): void
     {
         $company = Company::find($review->company->id);
-        if (!empty($company->reviews())){
+        if ( count($company->reviews) != 0 ){
             $rating = $company->reviews()->avg('rating');
             $company->average_rating = $rating;
             $company->saveQuietly();

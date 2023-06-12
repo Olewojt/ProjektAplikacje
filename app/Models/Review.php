@@ -9,7 +9,9 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $table = 'reviews';
+    protected $table = 'reviews'; public function pending(){
+        return $this->hasOne(Pending::class);
+    }
 
     protected $fillable = [
         'user_id',

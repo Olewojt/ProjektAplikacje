@@ -36,7 +36,7 @@
     
             <div class="form-group col-md-6">
                 <label class='p-2' for="name">Numer telefonu</label>
-                <input type="text" class="form-control" name='phone_number' required maxlength=9>
+                <input type="text" class="form-control" name='phone_number' pattern='^\d+$' required maxlength=9>
             </div>
         </div>
 

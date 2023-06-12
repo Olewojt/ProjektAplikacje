@@ -11,7 +11,7 @@
                 </div>
                 <div class='col-md-6 px-4'>
                     <label for='phone_number' class='formLabels'>Telefon</label><br/>
-                    <input type='text' name='phone_number' value="{{ $company->phone_number }}" class="form-control"  maxlength=9>
+                    <input type='text' name='phone_number' value="{{ $company->phone_number }}" class="form-control" pattern='^\d+$' maxlength=9>
                 </div>
             </div>
             
@@ -33,7 +33,7 @@
                     <label for='building_number' class='formLabels'>Nr. budynku</label><br/>
                     <input type='text' name='building_number' class="form-control"  maxlength=10 value="{{ $company->address->building_number }}">
                     <label for='zip_code' class='formLabels'>Kod pocztowy</label><br/>
-                    <input type='text' name='zip_code' class="form-control"  maxlength=6 value="{{ $company->address->zip_code }}">
+                    <input type='text' name='zip_code' class="form-control" pattern='^\d{2}-\d{3}$' maxlength=6 value="{{ $company->address->zip_code }}">
                 </div>
                 <div class='col-md-6 px-4'>
                         <label for='city' class='formLabels'>Miasto</label><br/>

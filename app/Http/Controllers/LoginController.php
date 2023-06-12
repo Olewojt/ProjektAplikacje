@@ -23,8 +23,8 @@ class LoginController extends Controller
     public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'login' => 'required',
-            'password' => 'required',
+            'login' => 'required|max:60',
+            'password' => 'required|max:256',
         ]);
  
         if (Auth::attempt($credentials)) {
@@ -33,9 +33,7 @@ class LoginController extends Controller
             return redirect()->route('main');
         }
  
-        return back()->withErrors([
-            'login' => 'Nieprawidłowe dane logowania',
-        ])->onlyInput('login');
+        return back()->withErrors(['error' => 'Nieprawidłowe dane logowania']);
     }
 
     public function logout(Request $request)

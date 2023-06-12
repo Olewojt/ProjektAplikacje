@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             VoivodeshipSeeder::class,
             CompanyAddressSeeder::class,
             ReviewSeeder::class,
-            PendingSeeder::class,
         ]);
 
         $companies = Company::all();

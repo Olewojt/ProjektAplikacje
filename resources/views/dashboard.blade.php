@@ -41,7 +41,7 @@
             <div class='row'>
                 <div class='col-md-6 px-4'>
                     <label for='phone_number' class='formLabels'>Numer telefonu</label><br/>
-                    <input type='text' name='phone_number' value={{ $user->phone_number }} class="form-control" maxlength='9'>
+                    <input type='text' name='phone_number' value={{ $user->phone_number }} class="form-control" pattern='^\d+$' maxlength='9'>
                 </div>
             </div>
 

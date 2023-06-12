@@ -11,7 +11,7 @@
                 </div>
                 <div class='col-md-6 px-4'>
                     <label for='phone_number' class='formLabels'>Telefon</label><br/>
-                    <input type='text' name='phone_number' class="form-control"  maxlength=9 required>
+                    <input type='text' name='phone_number' class="form-control" pattern='^\d+$' maxlength=9 required>
                 </div>
             </div>
             
